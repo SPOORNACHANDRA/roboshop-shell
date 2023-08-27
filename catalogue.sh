@@ -11,7 +11,7 @@ cd /app
 npm install
 systemctl daemon-reload
 yum install mongodb-org-shell -y
-mongo --host mongodb.poornadevops.online </app/schema/catalogue.js
+mongo --host MONGODB-SERVER-IPADDRESS </app/schema/catalogue.js
 
 
 systemctl enable catalogue
