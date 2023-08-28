@@ -12,6 +12,7 @@ npm install
 systemctl daemon-reload
 systemctl enable user
 systemctl start user
+
 yum install mongodb-org-shell -y
 mongo --host mongodb.poornadevops.online </app/schema/user.js
 
