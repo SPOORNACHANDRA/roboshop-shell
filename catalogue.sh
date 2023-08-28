@@ -6,7 +6,7 @@ echo -e " \e[31m>>>>>>>>>> create nodejs repos <<<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>/tmp/roboshop.log
 echo -e " \e[31m>>>>>>>>>> install nodejs  <<<<<<<<<\e[0m"
 yum install nodejs -y &>/tmp/roboshop.log
-echo ">>>>>>>>>> create an application user <<<<<<<<<\e[0m"
+echo -e "\e[31m>>>>>>>>>> create an application user <<<<<<<<<\e[0m"
 useradd roboshop &>/tmp/roboshop.log
 echo -e "\e[31m>>>>>>>>>>>removing directory<<<<<<<<<<\e[0m"
 rm -rf /app &>/tmp/roboshop.log
