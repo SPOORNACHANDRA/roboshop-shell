@@ -9,9 +9,10 @@ cd /app
 unzip /tmp/user.zip
 cd /app
 npm install
-
-yum install mongodb-org-shell -y
-mongo --host mongodb.poornadevops.online </app/schema/user.js
 systemctl daemon-reload
 systemctl enable user
+systemctl start user
+yum install mongodb-org-shell -y
+mongo --host mongodb.poornadevops.online </app/schema/user.js
+
 systemctl restart user
