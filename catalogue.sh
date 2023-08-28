@@ -1,28 +1,28 @@
-echo ">>>>>>>>>> create catalogue service <<<<<<<<<<"
+echo -e " \e[31m >>>>>>>>>> create catalogue service <<<<<<<<<>[\e[om"
 cp catalogue.service /etc/systemd/system/catalogue.service
-echo ">>>>>>>>>> create mongo repo <<<<<<<<<<"
+echo -e " \e[31m>>>>>>>>>> create mongo repo <<<<<<<<<>[\e[om"
 cp mongo.repo /etc/yum.repos.d/mongo.repo
-echo ">>>>>>>>>> create nodejs repos <<<<<<<<<<"
+echo -e " \e[31m>>>>>>>>>> create nodejs repos <<<<<<<<<>[\e[om"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
-echo ">>>>>>>>>> install nodejs  <<<<<<<<<<"
+echo -e " \e[31m>>>>>>>>>> install nodejs  <<<<<<<<<>[\e[om"
 yum install nodejs -y
-echo ">>>>>>>>>> create an application user <<<<<<<<<<"
+echo -e " \e[31m>>>>>>>>>> create an application user <<<<<<<<<>[\e[om"
 useradd roboshop
-echo ">>>>>>>>>> create app directory <<<<<<<<<"
+echo -e " \e[31m>>>>>>>>>> create app directory <<<<<<<<>[\e[om"
 mkdir /app
-echo ">>>>>>>>>> download app content  <<<<<<<<<<"
+echo -e " \e[31m>>>>>>>>>> download app content  <<<<<<<<<>[\e[om"
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
-echo ">>>>>>>>>> app extraction  <<<<<<<<<<"
+echo -e " \e[31m>>>>>>>>>> app extraction  <<<<<<<<<>[\e[om"
 cd /app
 unzip /tmp/catalogue.zip
 cd /app
-echo ">>>>>>>>>> download Nodejs dependencies <<<<<<<<<<"
+echo -e " \e[31m>>>>>>>>>> download Nodejs dependencies <<<<<<<<<>[\e[om"
 npm install
-echo ">>>>>>>>>> install mongodb client <<<<<<<<<<"
+echo -e " \e[31m>>>>>>>>>> install mongodb client <<<<<<<<<>[\e[om"
 yum install mongodb-org-shell -y
-echo ">>>>>>>>>> load catalogue schema <<<<<<<<<<"
+echo -e " \e[31m>>>>>>>>>> load catalogue schema <<<<<<<<<>[\e[om"
 mongo --host mongodb.poornadevops.online </app/schema/catalogue.js
-echo ">>>>>>>>>> create catalogue service <<<<<<<<<<"
+echo -e " \e[31m>>>>>>>>>> create catalogue service <<<<<<<<<>[\e[om"
 systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue
