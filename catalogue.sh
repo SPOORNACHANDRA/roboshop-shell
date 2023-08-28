@@ -9,8 +9,9 @@ cd /app
 unzip /tmp/catalogue.zip
 cd /app
 npm install
-yum install mongodb-org-shell -y
-mongo --host mongodb.poornadevops.online</app/schema/catalogue.js
 systemctl daemon-reload
 systemctl enable catalogue
+systemctl start catalogue
+yum install mongodb-org-shell -y
+mongo --host mongodb.poornadevops.online </app/schema/catalogue.js
 systemctl restart catalogue
