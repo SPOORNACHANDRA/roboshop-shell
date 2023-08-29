@@ -6,6 +6,8 @@ func_systemd() {
     systemctl start ${component} &>>${log}
 }
 func_apppreq(){
+  echo -e " \e[31m>>>>>>>>>> ${component} service <<<<<<<<<\e[0m"
+    cp shipping.service /etc/systemd/system/shipping.service &>>${log}
   echo -e "\e[31m>>>>>>>>>> create an application user <<<<<<<<<\e[0m"
     useradd roboshop &>>${log}
     echo -e "\e[31m>>>>>>>>>>>removing directory<<<<<<<<<<\e[0m"
@@ -22,9 +24,6 @@ func_apppreq(){
 
 func_nodejs() {
   log=/tmp/roboshop.log
-
-  echo -e " \e[31m>>>>>>>>>> create user service <<<<<<<<<\e[0m"
-  cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
   echo -e " \e[31m>>>>>>>>>> create mongo repo <<<<<<<<<\e[0m"
   cp mongo.repo /etc/yum.repos.d/mongo.repo &>>${log}
   echo -e " \e[31m>>>>>>>>>> create nodejs repos <<<<<<<<<\e[0m"
@@ -41,8 +40,7 @@ func_apppreq
 func_systemd
 }
 func_java() {
-  echo -e " \e[31m>>>>>>>>>> ${component} service <<<<<<<<<\e[0m"
-  cp shipping.service /etc/systemd/system/shipping.service &>>${log}
+
   echo -e " \e[31m>>>>>>>>>> install maven <<<<<<<<<\e[0m"
   yum install maven -y &>>${log}
   func_apppreq
@@ -54,4 +52,12 @@ func_java() {
   echo -e " \e[31m>>>>>>>>>> load schema  <<<<<<<<<\e[0m"
   mysql -h mysql.poornadevops.online -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log}
  func_systemd
+}
+func_python(){
+  echo -e " \e[31m>>>>>>>>>> build ${component}  <<<<<<<<<\e[0m"
+  yum install python36 gcc python3-devel -y &>>${log}
+  func_apppreq
+  echo -e " \e[31m>>>>>>>>>> build ${component}  <<<<<<<<<\e[0m"
+  pip3.6 install -r requirements.txt &>>${log}
+  func_systemd
 }
