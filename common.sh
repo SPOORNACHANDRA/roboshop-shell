@@ -39,7 +39,7 @@ func_apppreq
   mongo --host mongodb.poornadevops.online </app/schema/${component}.js &>>${log}
 func_systemd
 }
-fun_java() {
+func_java() {
   echo -e " \e[31m>>>>>>>>>> ${component} service <<<<<<<<<\e[0m"
   cp shipping.service /etc/systemd/system/shipping.service
   echo -e " \e[31m>>>>>>>>>> install maven <<<<<<<<<\e[0m"
