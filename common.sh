@@ -1,3 +1,4 @@
+log=/tmp/roboshop.log
 func_systemd() {
   echo -e " \e[31m>>>>>>>>>> ${component} service <<<<<<<<<\e[0m"
   systemctl daemon-reload &>>${log}
@@ -41,16 +42,16 @@ func_systemd
 }
 func_java() {
   echo -e " \e[31m>>>>>>>>>> ${component} service <<<<<<<<<\e[0m"
-  cp shipping.service /etc/systemd/system/shipping.service
+  cp shipping.service /etc/systemd/system/shipping.service &>>${log}
   echo -e " \e[31m>>>>>>>>>> install maven <<<<<<<<<\e[0m"
-  yum install maven -y
+  yum install maven -y &>>${log}
   func_apppreq
    echo -e " \e[31m>>>>>>>>>> build ${component}  <<<<<<<<<\e[0m"
-  mvn clean package
-  mv target/${component}-1.0.jar ${component}.jar
+  mvn clean package &>>${log}
+  mv target/${component}-1.0.jar ${component}.jar &>>${log}
   echo -e " \e[31m>>>>>>>>>> install mysql client <<<<<<<<<\e[0m"
-  yum install mysql -y
+  yum install mysql -y &>>${log}
   echo -e " \e[31m>>>>>>>>>> load schema  <<<<<<<<<\e[0m"
-  mysql -h mysql.poornadevops.online -uroot -pRoboShop@1 < /app/schema/${component}.sql
+  mysql -h mysql.poornadevops.online -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log}
  func_systemd
 }
