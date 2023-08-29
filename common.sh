@@ -17,7 +17,7 @@ fi
 if [ "$schema_type"  == "mysql" ]; then
     echo -e " \e[31m>>>>>>>>>> install mysql client <<<<<<<<<\e[0m"
     yum install mysql -y &>>${log}
-    echo -e " \e[31m>>>>>>>>>> load schema  <<<<<<<<<\e[0m"
+    echo -e " \e[31m>>>>>>>>>> load ${component} schema  <<<<<<<<<\e[0m"
     mysql -h mysql.poornadevops.online -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log}
 fi
 }
@@ -42,19 +42,16 @@ func_apppreq() {
 
 
 func_nodejs() {
-  log=/tmp/roboshop.log
   echo -e " \e[31m>>>>>>>>>> create mongo repo <<<<<<<<<\e[0m"
   cp mongo.repo /etc/yum.repos.d/mongo.repo &>>${log}
   echo -e " \e[31m>>>>>>>>>> create nodejs repos <<<<<<<<<\e[0m"
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log}
   echo -e " \e[31m>>>>>>>>>> install nodejs  <<<<<<<<<\e[0m"
   yum install nodejs -y &>>${log}
-func_apppreq
+  func_apppreq
   echo -e " \e[31m>>>>>>>>> download Nodejs dependencies <<<<<<<<<\e[0m"
   npm install &>>${log}
-
  func_schema_setup
-
 func_systemd
 }
 
