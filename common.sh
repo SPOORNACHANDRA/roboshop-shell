@@ -8,7 +8,7 @@ func_systemd() {
 
 
 func_schema_setup() {
-  if ["$schema_type" =="mongodb" ]; then
+  if [ "$schema_type" == "mongodb" ]; then
    echo -e " \e[31m>>>>>>>>>> install mongodb client <<<<<<<<<\e[0m"
     yum install mongodb-org-shell -y &>>${log}
     echo -e " \e[31m>>>>>>>>>> load ${component} schema <<<<<<<<<\e[0m"
