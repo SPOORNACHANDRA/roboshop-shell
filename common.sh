@@ -10,7 +10,7 @@ func_schema_setup(){
    echo -e " \e[31m>>>>>>>>>> install mongodb client <<<<<<<<<\e[0m"
     yum install mongodb-org-shell -y &>>${log}
     echo -e " \e[31m>>>>>>>>>> load user schema <<<<<<<<<\e[0m"
-    mongo --host mongodb.poornadevops.online </app/schema/${component} &>>${log}
+    mongo --host mongodb.poornadevops.online < /app/schema/${component}.sh &>>${log}
 fi
 if [ "$schema_type"  == "mysql" ]; then
     echo -e " \e[31m>>>>>>>>>> install mysql client <<<<<<<<<\e[0m"
