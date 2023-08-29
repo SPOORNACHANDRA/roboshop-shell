@@ -61,3 +61,11 @@ func_python(){
   pip3.6 install -r requirements.txt &>>${log}
   func_systemd
 }
+func_golang(){
+  func_apppreq
+ echo -e " \e[31m>>>>>>>>>> build ${component}  <<<<<<<<<\e[0m"
+  go mod init dispatch &>>${log}
+  go get &>>${log}
+  go build &>>${log}
+  func_systemd
+}
