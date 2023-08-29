@@ -5,7 +5,9 @@ func_systemd() {
     systemctl enable ${component} &>>${log}
     systemctl start ${component} &>>${log}
 }
-func_schema_setup(){
+
+
+func_schema_setup() {
   if ["$schema_type" =="mongodb" ]; then
    echo -e " \e[31m>>>>>>>>>> install mongodb client <<<<<<<<<\e[0m"
     yum install mongodb-org-shell -y &>>${log}
@@ -20,7 +22,9 @@ if [ "$schema_type"  == "mysql" ]; then
     mysql -h mysql.poornadevops.online -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log}
 fi
 }
-func_apppreq(){
+
+
+func_apppreq() {
   echo -e " \e[31m>>>>>>>>>> ${component} service <<<<<<<<<\e[0m"
     cp shipping.service /etc/systemd/system/shipping.service &>>${log}
   echo -e "\e[31m>>>>>>>>>> create an application user <<<<<<<<<\e[0m"
@@ -36,6 +40,7 @@ func_apppreq(){
     unzip /tmp/${component}.zip &>>${log}
     cd /app &>>${log}
 }
+
 
 func_nodejs() {
   log=/tmp/roboshop.log
@@ -53,8 +58,9 @@ func_apppreq
 
 func_systemd
 }
-func_java() {
 
+
+func_java() {
   echo -e " \e[31m>>>>>>>>>> install maven <<<<<<<<<\e[0m"
   yum install maven -y &>>${log}
   func_apppreq
@@ -64,7 +70,9 @@ func_java() {
 func_schema_setup
  func_systemd
 }
-func_python(){
+
+
+func_python() {
   echo -e " \e[31m>>>>>>>>>> build ${component}  <<<<<<<<<\e[0m"
   yum install python36 gcc python3-devel -y &>>${log}
   func_apppreq
@@ -72,7 +80,9 @@ func_python(){
   pip3.6 install -r requirements.txt &>>${log}
   func_systemd
 }
-func_golang(){
+
+
+func_golang() {
   func_apppreq
  echo -e " \e[31m>>>>>>>>>> build ${component}  <<<<<<<<<\e[0m"
   go mod init dispatch &>>${log}
