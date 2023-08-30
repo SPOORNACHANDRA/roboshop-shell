@@ -36,7 +36,7 @@ fi
 
 func_apppreq() {
   echo -e " \e[31m>>>>>>>>>> ${component} service <<<<<<<<<\e[0m"
-    cp shipping.service /etc/systemd/system/shipping.service &>>${log}
+    cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
     func_exit_status
   echo -e "\e[31m>>>>>>>>>> create an application user <<<<<<<<<\e[0m"
 
