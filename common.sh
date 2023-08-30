@@ -39,7 +39,11 @@ func_apppreq() {
     cp shipping.service /etc/systemd/system/shipping.service &>>${log}
     func_exit_status
   echo -e "\e[31m>>>>>>>>>> create an application user <<<<<<<<<\e[0m"
-    useradd roboshop &>>${log}
+
+    id roboshop &>>${log}
+    if [$? -ne 0 ]; then
+       useradd roboshop &>>${log}
+       fi
    func_exit_status
     echo -e "\e[31m>>>>>>>>>>>removing directory<<<<<<<<<<\e[0m"
     rm -rf /app &>>${log}
