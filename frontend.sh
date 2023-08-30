@@ -1,4 +1,4 @@
-source=common.sh
+source common.sh
 
 echo -e " \e[31m>>>>>>>>>> install nginx service <<<<<<<<<\e[0m"
 yum install nginx -y &>>${log}
