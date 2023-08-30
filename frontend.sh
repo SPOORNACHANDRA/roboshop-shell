@@ -23,8 +23,7 @@ unzip /tmp/frontend.zip &>>${log}
 func_exit_status
 
 echo -e " \e[31m>>>>>>>>>>  start nginx  <<<<<<<<<\e[0m"
-systemctl enable nginx &>>${log}
-systemctl restart nginx &>>${log}
+func_systemd
 func_exit_status
 
 
