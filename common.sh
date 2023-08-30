@@ -4,7 +4,7 @@ func_systemd() {
   echo -e " \e[31m>>>>>>>>>> ${component} service <<<<<<<<<\e[0m"
   systemctl daemon-reload &>>${log}
     systemctl enable ${component} &>>${log}
-    systemctl start ${component} &>>${log}
+    systemctl restart ${component} &>>${log}
     func_exit_status
 }
 func_exit_status() {
