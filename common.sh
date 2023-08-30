@@ -8,10 +8,10 @@ func_systemd() {
 }
 func_exit_status() {
    if [ $? -eq 0 ]; then
-      echo -e "\e[32m success \e[0m"
-      else
-        echo -e "\e[33m failure \e[0m"
-        fi
+   echo -e "\e[32m success \e[0m"
+   else
+   echo -e "\e[33m failure \e[0m"
+   fi
 }
 
 func_schema_setup() {
