@@ -1,4 +1,6 @@
+# shellcheck disable=SC2034
 source=common.sh
+log=/tmp/roboshop.log
 
 echo -e " \e[31m>>>>>>>>>> install nginx service <<<<<<<<<\e[0m"
 yum install nginx -y &>>${log}
