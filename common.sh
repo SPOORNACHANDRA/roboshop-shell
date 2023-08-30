@@ -41,9 +41,9 @@ func_apppreq() {
   echo -e "\e[31m>>>>>>>>>> create an application user <<<<<<<<<\e[0m"
 
     id roboshop &>>${log}
-    if [$? -ne 0 ]; then
+    if [ $? -ne 0 ]; then
        useradd roboshop &>>${log}
-       fi
+    fi
    func_exit_status
     echo -e "\e[31m>>>>>>>>>>>removing directory<<<<<<<<<<\e[0m"
     rm -rf /app &>>${log}
