@@ -1,4 +1,5 @@
 log=/tmp/roboshop.log
+
 func_systemd() {
   echo -e " \e[31m>>>>>>>>>> ${component} service <<<<<<<<<\e[0m"
   systemctl daemon-reload &>>${log}
