@@ -34,6 +34,7 @@ func_apppreq() {
     echo $?
   echo -e "\e[31m>>>>>>>>>> create an application user <<<<<<<<<\e[0m"
     useradd roboshop &>>${log}
+    echo $?
     echo -e "\e[31m>>>>>>>>>>>removing directory<<<<<<<<<<\e[0m"
     rm -rf /app &>>${log}
     echo $?
@@ -46,6 +47,7 @@ func_apppreq() {
     cd /app &>>${log}
     unzip /tmp/${component}.zip &>>${log}
     echo $?
+    cd /app &>>${log}
 }
 
 
