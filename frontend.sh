@@ -1,4 +1,3 @@
-# shellcheck disable=SC2034
 source=common.sh
 log=/tmp/roboshop.log
 
