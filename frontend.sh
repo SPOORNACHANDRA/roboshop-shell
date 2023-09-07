@@ -5,7 +5,7 @@ yum install nginx -y &>>${log}
 func_exit_status
 
 echo -e " \e[31m>>>>>>>>>> copy roboshop configuration <<<<<<<<<\e[0m"
-cp nginx.roboshop.conf /etc/nginx/default.d/roboshop.conf &>>${log}
+cp nginx-roboshop.conf /etc/nginx/default.d/roboshop.conf &>>${log}
 func_exit_status
 
 echo -e " \e[31m>>>>>>>>>> clean old content <<<<<<<<<\e[0m"
